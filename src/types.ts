@@ -16,3 +16,23 @@ export type ForumType = {
   uuid: string;
   createdAt: string;
 };
+
+export type File = {
+  data: {
+    attributes: {
+      name: string;
+      url: string;
+    };
+  };
+};
+
+export type CampaignType = {
+  name: string;
+  description: string;
+  date: string;
+  banner?: File;
+  media: string[];
+  budget: number;
+  uuid: string;
+  createdAt: string;
+};

@@ -1,9 +1,12 @@
-import { Container } from '@mui/material';
+import Hero from '@/components/Hero';
+import { Box, Container } from '@mui/material';
 import Image from 'next/image';
-import Link from 'next/link'
+import Link from 'next/link';
 
 export default function Home() {
-  return <Container>
-    <Link href={'/events'}>Going to event page</Link>
-  </Container>;
+  return (
+    <Box>
+      <Hero />
+    </Box>
+  );
 }

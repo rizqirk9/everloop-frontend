@@ -11,6 +11,7 @@ import {
   Typography
 } from '@mui/material';
 import { Widgets as WidgetsIcon } from '@mui/icons-material';
+import Forum from './_section/forum'
 
 const OurServices = () => {
   const services = [
@@ -35,11 +36,10 @@ const OurServices = () => {
   return (
     <Container
       sx={{
-        alignItems: 'center',
         marginY: 16
       }}
     >
-      <Stack gap={4}>
+      <Stack gap={2}>
         <Typography variant="h3" textAlign="center">
           Our Services
         </Typography>
@@ -84,11 +84,52 @@ const OurServices = () => {
   );
 };
 
+const Campaigns = () => {
+  return (
+    <Container
+      sx={{
+        marginY: 16
+      }}
+    >
+      <Stack gap={2}>
+        <Typography variant="h3" textAlign="left">
+          Campaign
+        </Typography>
+        <Stack
+          direction={'row'}
+          alignContent="end"
+          justifyContent="space-between"
+        >
+          <Typography variant="body2" textAlign="left">
+            High Impact Campaign Minggu Ini
+          </Typography>
+          <Button variant="text" size="small">
+            Lihat semua campaign
+          </Button>
+        </Stack>
+      </Stack>
+      <Stack
+        direction="row"
+        gap={5}
+        marginTop={10}
+        sx={{
+          width: '100%',
+          '& > *': {
+            width: '100%'
+          }
+        }}
+      ></Stack>
+    </Container>
+  );
+};
+
 export default function Home() {
   return (
     <Box>
       <Hero />
       <OurServices />
+      <Campaigns />
+      <Forum />
     </Box>
   );
 }

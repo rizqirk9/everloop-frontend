@@ -1,9 +1,18 @@
 'use client';
 
-import { Box, Button, Stack, TextField } from '@mui/material';
+import {
+  Box,
+  Button,
+  Container,
+  FormControl,
+  Stack,
+  TextField,
+  Typography
+} from '@mui/material';
 import { useForm } from 'react-hook-form';
 
 import { login } from './handler';
+import Image from 'next/image';
 
 const AuthPage = () => {
   const { handleSubmit, register } = useForm({
@@ -11,33 +20,70 @@ const AuthPage = () => {
   });
 
   return (
-    <Box
+    <Container
       sx={{
-        justifyContent: 'center',
-        alignItems: 'center',
-        display: 'flex',
-        height: '100vh'
+        my: 8
       }}
     >
-      <Stack spacing={2} width={'50vh'}>
-        <TextField
-          id="username"
-          label="Username"
-          variant="outlined"
-          {...register('username')}
-        />
-        <TextField
-          id="password"
-          label="Password"
-          type="password"
-          variant="outlined"
-          {...register('password')}
-        />
-        <Button variant="contained" onClick={handleSubmit(login)}>
-          Login
-        </Button>
+      <Stack direction="row" spacing={5} justifyContent="space-between">
+        <Box width={'50%'} paddingY={10}>
+          <Typography variant="h4">Masuk</Typography>
+          <Stack my={5} gap={5}>
+            <FormControl>
+              <Box>
+                <Typography marginBottom={2} variant="subtitle1">
+                  Email
+                </Typography>
+                <TextField
+                  placeholder="Masukan email"
+                  variant="outlined"
+                  type="email"
+                  fullWidth
+                  {...register('email')}
+                />
+              </Box>
+            </FormControl>
+
+            <FormControl>
+              <Box>
+                <Typography marginBottom={2} variant="subtitle1">
+                  Password
+                </Typography>
+                <TextField
+                  placeholder="Masukan password"
+                  variant="outlined"
+                  type="password"
+                  fullWidth
+                  {...register('password')}
+                />
+              </Box>
+            </FormControl>
+          </Stack>
+          <Button variant="contained" onClick={handleSubmit(login)}>
+            Login
+          </Button>
+        </Box>
+        <Box
+          sx={{
+            width: '50%',
+            height: '30%',
+            position: 'sticky',
+            top: 20
+          }}
+        >
+          <Image
+            src={'https://placehold.jp/1000x1000.png'}
+            width={1000}
+            height={1000}
+            style={{
+              width: '100%',
+              height: '100%'
+            }}
+            alt="login_img"
+          />
+        </Box>
       </Stack>
-    </Box>
+    </Container>
   );
 };
 

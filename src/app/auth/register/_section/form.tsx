@@ -15,7 +15,7 @@ import { VisuallyHiddenInput } from '@/components';
 export default function Form() {
   return (
     <Box paddingY={10}>
-      <Typography variant="h4">Informasi Akun</Typography>
+      <Typography variant="h4">Pendaftaran Akun</Typography>
       <Stack my={5} gap={5}>
         <FormControl>
           <Box>

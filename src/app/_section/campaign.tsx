@@ -39,7 +39,7 @@ export default function Campaign() {
           justifyContent="space-between"
         >
           <Typography variant="body2" textAlign="left">
-            High Impact Campaign Minggu Ini
+            Campaign terbaru
           </Typography>
           <Button variant="text" size="small">
             Lihat semua campaign

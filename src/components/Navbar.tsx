@@ -18,7 +18,7 @@ import {
 import { Menu as MenuIcon, Adb as AdbIcon } from '@mui/icons-material';
 import { useTheme } from '@mui/material';
 import Image from 'next/image';
-import { CAMPAIGNS, FORUMS } from '@/constants/routes';
+import { AUTH, CAMPAIGNS, FORUMS } from '@/constants/routes';
 import Link from 'next/link';
 
 export default function Navbar() {
@@ -129,9 +129,13 @@ export default function Navbar() {
               />
               <Stack direction="row" flex={1} gap={2}>
                 {pages.map((page, index) => (
-                  <Link href={page.link} key={index} style={{
-                    textDecoration: 'none'
-                  }}>
+                  <Link
+                    href={page.link}
+                    key={index}
+                    style={{
+                      textDecoration: 'none'
+                    }}
+                  >
                     <Button
                       sx={{ my: 2, color: 'CaptionText', display: 'block' }}
                     >
@@ -141,8 +145,12 @@ export default function Navbar() {
                 ))}
               </Stack>
               <Stack direction="row" gap={2}>
-                <Button variant="contained">Daftar</Button>
-                <Button variant="outlined">Masuk</Button>
+                <Link href={AUTH.REGISTER}>
+                  <Button variant="contained">Daftar</Button>
+                </Link>
+                <Link href={AUTH.AUTH}>
+                  <Button variant="outlined">Masuk</Button>
+                </Link>
               </Stack>
             </Stack>
           </Box>

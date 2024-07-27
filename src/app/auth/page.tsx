@@ -39,7 +39,7 @@ const AuthPage = () => {
                   variant="outlined"
                   type="email"
                   fullWidth
-                  {...register('email')}
+                  {...register('username')}
                 />
               </Box>
             </FormControl>

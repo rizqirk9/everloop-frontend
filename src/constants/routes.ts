@@ -2,7 +2,7 @@ export const AUTH = {
   AUTH: 'auth'
 };
 
-export const EVENTS = {
-  LIST: 'events',
-  CREATE: 'events/create'
+export const CAMPAIGNS = {
+  LIST: 'campaigns',
+  CREATE: 'campaigns/create'
 };

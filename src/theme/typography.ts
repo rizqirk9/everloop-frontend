@@ -9,6 +9,10 @@ const poppins = Poppins({
 
 const typography: TypographyOptions = {
   fontFamily: poppins.style.fontFamily,
+  allVariants: {
+    color: '#161C2D',
+    accentColor: '#FFFFFF'
+  },
   h1: {
     fontSize: 60,
     fontWeight: '500'

@@ -9,21 +9,37 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import { fetchCampaigns } from './handler';
 
 const Campaign: React.FC = () => {
-    const [campaigns, setCampaigns] = useState([]);
+    const [campaigns, setCampaigns] = useState<any[]>([]);
+    const [filteredCampaigns, setFilteredCampaigns] = useState<any[]>([]);
     const [sortOrder, setSortOrder] = useState('');
     const [keyword, setKeyword] = useState('');
     const [showTag, setShowTag] = useState(false);
     const [tags, setTags] = useState<string[]>([]);
     const [activeStep, setActiveStep] = useState(0);
-    const maxSteps = Math.ceil(campaigns.length / 3);
+    const [categories, setCategories] = useState<string[]>([]);
+    const [selectedCategory, setSelectedCategory] = useState('');
 
     useEffect(() => {
         const getCampaigns = async () => {
             const data = await fetchCampaigns();
             setCampaigns(data);
+            setFilteredCampaigns(data);
+
+            // Extract unique categories from campaigns
+            const uniqueCategories = [...new Set(data.map((campaign: any) => campaign.attributes.type))];
+            setCategories(uniqueCategories);
         };
         getCampaigns();
     }, []);
+
+    useEffect(() => {
+        // Filter campaigns based on selected category
+        if (selectedCategory) {
+            setFilteredCampaigns(campaigns.filter(campaign => campaign.attributes.type === selectedCategory));
+        } else {
+            setFilteredCampaigns(campaigns);
+        }
+    }, [selectedCategory, campaigns]);
 
     const handleSortChange = (event: React.ChangeEvent<{ value: unknown }>) => {
         setSortOrder(event.target.value as string);
@@ -51,6 +67,7 @@ const Campaign: React.FC = () => {
     const handleClearAll = () => {
         setTags([]);
         setShowTag(false);
+        setSelectedCategory('');
     };
 
     const handleNext = () => {
@@ -59,6 +76,10 @@ const Campaign: React.FC = () => {
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    };
+
+    const formatBudget = (campaign: any) => {
+        return campaign.attributes.type === 'Donasi' ? `Rp ${campaign.attributes.budget.toLocaleString('id-ID')}` : campaign.attributes.budget.toLocaleString('id-ID');
     };
 
     return (
@@ -72,20 +93,16 @@ const Campaign: React.FC = () => {
                             <Typography variant="h6">Filters</Typography>
                             <Button variant="text" color="primary" onClick={handleClearAll}>Clear all</Button>
                         </Box>
-                        <Typography variant="body2" sx={{ mt: 1, mb: 2 }}>Showing {campaigns.length} of {campaigns.length}</Typography>
+                        <Typography variant="body2" sx={{ mt: 1, mb: 2 }}>Showing {filteredCampaigns.length} of {campaigns.length}</Typography>
                         <List>
-                            <ListItem button>
+                            <ListItem button onClick={() => setSelectedCategory('')}>
                                 <ListItemText primary="All" sx={{ fontSize: '0.875rem' }} />
                             </ListItem>
-                            <ListItem button>
-                                <ListItemText primary="Category One" sx={{ fontSize: '0.875rem' }} />
-                            </ListItem>
-                            <ListItem button>
-                                <ListItemText primary="Category Two" sx={{ fontSize: '0.875rem' }} />
-                            </ListItem>
-                            <ListItem button>
-                                <ListItemText primary="Category Three" sx={{ fontSize: '0.875rem' }} />
-                            </ListItem>
+                            {categories.map((category, index) => (
+                                <ListItem button key={index} onClick={() => setSelectedCategory(category)}>
+                                    <ListItemText primary={category} sx={{ fontSize: '0.875rem' }} />
+                                </ListItem>
+                            ))}
                         </List>
                         <Divider sx={{ my: 2 }} />
                         <TextField
@@ -136,7 +153,7 @@ const Campaign: React.FC = () => {
                         </Grid>
                     </Grid>
                     <Grid container spacing={2}>
-                        {campaigns.slice(activeStep * 3, activeStep * 3 + 3).map((campaign) => (
+                        {filteredCampaigns.slice(activeStep * 3, activeStep * 3 + 3).map((campaign) => (
                             <Grid item xs={12} sm={6} md={4} key={campaign.id}>
                                 <Paper sx={{ p: 2, textAlign: 'left', minHeight: '300px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                                     {campaign.attributes.banner?.data ? (
@@ -146,10 +163,21 @@ const Campaign: React.FC = () => {
                                     )}
                                     <Box>
                                         <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mt: 1 }}>{campaign.attributes.name}</Typography>
-                                        <Typography variant="body2" sx={{ mb: 1, overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
+                                        <Typography 
+                                            variant="body2" 
+                                            sx={{ 
+                                                mb: 1, 
+                                                overflow: 'hidden', 
+                                                textOverflow: 'ellipsis', 
+                                                display: '-webkit-box', 
+                                                WebkitLineClamp: 3, 
+                                                WebkitBoxOrient: 'vertical', 
+                                                height: '60px' 
+                                            }}
+                                        >
                                             {campaign.attributes.description}
                                         </Typography>
-                                        <Typography variant="body1" sx={{ mb: 1 }}>Rp {campaign.attributes.budget}</Typography>
+                                        <Typography variant="body1" sx={{ mb: 1 }}>{formatBudget(campaign)}</Typography>
                                     </Box>
                                     <Button variant="contained" color="primary" size="small" fullWidth>Lihat</Button>
                                 </Paper>
@@ -158,7 +186,7 @@ const Campaign: React.FC = () => {
                     </Grid>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 2 }}>
                         <MobileStepper
-                            steps={maxSteps}
+                            steps={Math.ceil(filteredCampaigns.length / 3)}
                             position="static"
                             activeStep={activeStep}
                             sx={{ flexGrow: 1 }}
@@ -168,7 +196,7 @@ const Campaign: React.FC = () => {
                                 </IconButton>
                             }
                             nextButton={
-                                <IconButton size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
+                                <IconButton size="small" onClick={handleNext} disabled={activeStep === Math.ceil(filteredCampaigns.length / 3) - 1}>
                                     <KeyboardArrowRight />
                                 </IconButton>
                             }

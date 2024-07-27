@@ -15,18 +15,28 @@
     "@mui/icons-material": "5.16.1",
     "@mui/material": "5.16.1",
     "@mui/material-nextjs": "5.16.1",
+    "@tiptap/core": "^2.5.7",
+    "@tiptap/extension-heading": "^2.5.7",
+    "@tiptap/extension-image": "^2.5.7",
+    "@tiptap/extension-table": "^2.5.7",
+    "@tiptap/pm": "^2.5.7",
+    "@tiptap/react": "^2.5.7",
+    "@tiptap/starter-kit": "^2.5.7",
+    "add": "2.0.6",
     "axios": "1.7.2",
+    "mui-tiptap": "1.9.5",
     "next": "14.2.5",
     "react": "18",
     "react-dom": "18",
-    "react-hook-form": "7.52.1"
+    "react-hook-form": "7.52.1",
+    "yarn": "1.22.22"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "14.2.5"
+    "eslint-config-next": "14.2.5",
+    "typescript": "^5"
   }
 }

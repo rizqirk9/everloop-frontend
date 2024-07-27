@@ -10,15 +10,32 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  Stack,
   Toolbar,
   Tooltip,
   Typography
 } from '@mui/material';
 import { Menu as MenuIcon, Adb as AdbIcon } from '@mui/icons-material';
 import { useTheme } from '@mui/material';
+import Image from 'next/image';
+import { AUTH, CAMPAIGNS, FORUMS } from '@/constants/routes';
+import Link from 'next/link';
 
 export default function Navbar() {
-  const pages = ['Products', 'Pricing', 'Blog'];
+  const pages = [
+    {
+      name: 'Campaign',
+      link: CAMPAIGNS.LIST
+    },
+    {
+      name: 'Forum',
+      link: FORUMS.LIST
+    },
+    {
+      name: 'Kerjasama',
+      link: FORUMS.LIST
+    }
+  ];
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -46,7 +63,7 @@ export default function Navbar() {
 
   return (
     <AppBar
-      position="static"
+      position="sticky"
       color="secondary"
       sx={{
         boxShadow: 'none'
@@ -54,8 +71,6 @@ export default function Navbar() {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* Logo Here */}
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -85,27 +100,62 @@ export default function Navbar() {
                 display: { xs: 'block', md: 'none' }
               }}
             >
-              {pages.map(page => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+              {pages.map((page, index) => (
+                <Link href={page.link} key={index}>
+                  <MenuItem>
+                    <Typography textAlign="center">{page.name}</Typography>
+                  </MenuItem>
+                </Link>
               ))}
             </Menu>
           </Box>
-          {/* Logo Here */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map(page => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'CaptionText', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+            <Stack
+              direction="row"
+              gap={2}
+              justifyContent="space-between"
+              alignItems="center"
+              width="100%"
+            >
+              <Image
+                src="/logo-everloop-long.svg"
+                alt="logo"
+                width={120}
+                height={40}
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto'
+                }}
+              />
+              <Stack direction="row" flex={1} gap={2}>
+                {pages.map((page, index) => (
+                  <Link
+                    href={page.link}
+                    key={index}
+                    style={{
+                      textDecoration: 'none'
+                    }}
+                  >
+                    <Button
+                      sx={{ my: 2, color: 'CaptionText', display: 'block' }}
+                    >
+                      {page.name}
+                    </Button>
+                  </Link>
+                ))}
+              </Stack>
+              <Stack direction="row" gap={2}>
+                <Link href={AUTH.REGISTER}>
+                  <Button variant="contained">Daftar</Button>
+                </Link>
+                <Link href={AUTH.AUTH}>
+                  <Button variant="outlined">Masuk</Button>
+                </Link>
+              </Stack>
+            </Stack>
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>{/* Right Button */}</Box>
+          <Box sx={{ flexGrow: 0 }}></Box>
         </Toolbar>
       </Container>
     </AppBar>

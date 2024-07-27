@@ -28,11 +28,11 @@ export default function AboutUs() {
           </Typography>
         </Stack>
         <Image
-          src="https://placehold.jp/1000x1000.png"
+          src="/logo-everloop-long.svg"
           height={500}
           width={1000}
           alt="about_us_img"
-          style={{ width: '100%', height: '400px' }}
+          style={{ width: '80%', height: '400px' }}
         />
       </Stack>
     </Container>

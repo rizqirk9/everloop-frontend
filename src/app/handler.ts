@@ -8,7 +8,11 @@ export const getForums = async () => {
 };
 
 export const getCampaigns = async () => {
-  const res = await axios.get(CAMPAIGNS.find);
+  const res = await axios.get(CAMPAIGNS.find, {
+    params: {
+      populate: '*'
+    }
+  });
 
   return res.data.data;
 };

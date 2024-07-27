@@ -76,7 +76,7 @@ export default function List() {
           {campaigns &&
             campaigns.map((campaign, index) => (
               <Grid item xs={12} sm={12} md={6} lg={4} key={index}>
-                <Box width="100%">
+                <Box width="100%" flexGrow={1}>
                   <CampaignListItem campaign={campaign.attributes} />
                 </Box>
               </Grid>

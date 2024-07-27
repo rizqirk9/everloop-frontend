@@ -1,6 +1,8 @@
+import { CAMPAIGNS } from '@/constants/routes'
 import { CampaignType } from '@/types';
 import { Box, Button, Grid, Paper, Typography } from '@mui/material';
 import Image from 'next/image';
+import Link from 'next/link'
 import React from 'react';
 
 export default function CampaignListItem({
@@ -13,10 +15,10 @@ export default function CampaignListItem({
       sx={{
         p: 2,
         textAlign: 'left',
-        minHeight: '300px',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        flexGrow: 1
       }}
     >
       {campaign.banner?.data ? (
@@ -51,15 +53,17 @@ export default function CampaignListItem({
             WebkitBoxOrient: 'vertical'
           }}
         >
-          {campaign.description}
+          <div dangerouslySetInnerHTML={{ __html: campaign.description }}></div>
         </Typography>
         <Typography variant="body1" sx={{ mb: 1 }}>
           Rp {campaign.budget}
         </Typography>
       </Box>
-      <Button variant="contained" color="primary" size="small" fullWidth>
-        Lihat
-      </Button>
+      <Link href={`${CAMPAIGNS.LIST}/${campaign.uuid}`}>
+        <Button variant="contained" size="small" color="primary">
+          Lihat Campaign
+        </Button>
+      </Link>
     </Paper>
   );
 }

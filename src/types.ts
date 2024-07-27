@@ -35,4 +35,5 @@ export type CampaignType = {
   budget: number;
   uuid: string;
   createdAt: string;
+  location: string;
 };

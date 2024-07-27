@@ -7,7 +7,7 @@ export const FILE = {
 };
 
 export const CAMPAIGNS = {
-  find: 'campaigns?populate=banner',
+  find: 'campaigns',
   create: 'campaigns'
 };
 

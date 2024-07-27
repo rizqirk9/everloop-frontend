@@ -14,6 +14,7 @@ import { Widgets as WidgetsIcon } from '@mui/icons-material';
 import Forum from './_section/forum'
 import Mitigation from './_section/mitigation'
 import AboutUs from './_section/aboutUs'
+import CTA from './_section/cta'
 
 const OurServices = () => {
   const services = [
@@ -38,7 +39,7 @@ const OurServices = () => {
   return (
     <Container
       sx={{
-        marginY: 16
+        paddingY: 16
       }}
     >
       <Stack gap={2}>
@@ -90,7 +91,7 @@ const Campaigns = () => {
   return (
     <Container
       sx={{
-        marginY: 16
+        paddingY: 16
       }}
     >
       <Stack gap={2}>
@@ -134,6 +135,7 @@ export default function Home() {
       <Forum />
       <Mitigation />
       <AboutUs />
+      <CTA />
     </Box>
   );
 }

@@ -4,7 +4,11 @@ import React from 'react';
 
 export default function AboutUs() {
   return (
-    <Container>
+    <Container
+      sx={{
+        paddingY: 16
+      }}
+    >
       <Stack gap={8}>
         <Stack
           direction="row"

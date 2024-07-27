@@ -20,7 +20,7 @@ export default function Forum() {
   return (
     <Container
       sx={{
-        marginY: 16
+        paddingY: 16
       }}
     >
       <Stack gap={2}>

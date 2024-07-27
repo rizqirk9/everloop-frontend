@@ -10,3 +10,8 @@ export const EVENT = {
   find: 'events?populate=banner',
   create: 'events'
 };
+
+export const FORUM = {
+  find: 'forums',
+  create: 'forums'
+};

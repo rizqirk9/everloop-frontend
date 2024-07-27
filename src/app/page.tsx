@@ -13,6 +13,7 @@ import {
 import { Widgets as WidgetsIcon } from '@mui/icons-material';
 import Forum from './_section/forum'
 import Mitigation from './_section/mitigation'
+import AboutUs from './_section/aboutUs'
 
 const OurServices = () => {
   const services = [
@@ -132,6 +133,7 @@ export default function Home() {
       <Campaigns />
       <Forum />
       <Mitigation />
+      <AboutUs />
     </Box>
   );
 }

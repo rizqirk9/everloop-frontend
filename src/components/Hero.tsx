@@ -19,7 +19,7 @@ const HeroSection = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   color: '#fff',
   textAlign: 'center',
-  backgroundImage: 'url(https://source.unsplash.com/random)', // Replace with your image URL
+  backgroundImage: 'url(https://placehold.jp/1000x1000.png)', // Replace with your image URL
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   '&::before': {

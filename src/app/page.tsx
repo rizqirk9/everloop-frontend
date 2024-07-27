@@ -5,5 +5,6 @@ import Link from 'next/link'
 export default function Home() {
   return <Container>
     <Link href={'/events'}>Going to event page</Link>
+    <Link href={'/campaign'}>Going to event campaign</Link>
   </Container>;
 }

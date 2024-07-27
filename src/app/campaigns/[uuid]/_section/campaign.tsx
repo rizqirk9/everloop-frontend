@@ -49,9 +49,6 @@ export default function Campaign({ campaign }: { campaign: CampaignType }) {
               Rp {campaign.budget}
             </Typography>
           </Box>
-          {/* <Typography variant="subtitle1" sx={{ mb: 2 }}>
-            {campaign.location} | {campaign.date}
-          </Typography> */}
           <FormControl fullWidth sx={{ mt: 2 }}>
             <Typography variant="subtitle1" sx={{ mb: 1 }}>
               Jumlah Donasi

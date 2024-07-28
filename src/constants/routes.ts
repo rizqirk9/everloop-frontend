@@ -1,13 +1,15 @@
 export const AUTH = {
-  AUTH: 'auth'
+  AUTH: '/auth',
+  REGISTER: '/auth/register',
+  REGISTER_COMMUNITY: '/auth/register-community',
 };
 
 export const CAMPAIGNS = {
-  LIST: 'campaigns',
-  CREATE: 'campaigns/create'
+  LIST: '/campaigns',
+  CREATE: '/campaigns/create'
 };
 
 export const FORUMS = {
-  LIST: 'forums',
-  CREATE: 'forums/create',
+  LIST: '/forums',
+  CREATE: '/forums/create',
 };

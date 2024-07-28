@@ -35,8 +35,6 @@ export default function List() {
     fetchData();
   }, [currentPage]);
 
-
-
   return (
     <Container
       sx={{

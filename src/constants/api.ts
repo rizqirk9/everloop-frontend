@@ -6,9 +6,9 @@ export const FILE = {
   upload: 'upload'
 };
 
-export const EVENT = {
-  find: 'events?populate=banner',
-  create: 'events'
+export const CAMPAIGNS = {
+  find: 'campaigns',
+  create: 'campaigns'
 };
 
 export const FORUM = {

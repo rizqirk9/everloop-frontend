@@ -6,7 +6,19 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'placehold.jp',
         port: '',
-        pathname: '/*'
+        pathname: '/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'dev-fundrising.nashirjamali.com',
+        port: '',
+        pathname: '/uploads/**'
       }
     ]
   }

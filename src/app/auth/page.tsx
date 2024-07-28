@@ -39,7 +39,7 @@ const AuthPage = () => {
                   variant="outlined"
                   type="email"
                   fullWidth
-                  {...register('email')}
+                  {...register('username')}
                 />
               </Box>
             </FormControl>
@@ -72,7 +72,7 @@ const AuthPage = () => {
           }}
         >
           <Image
-            src={'https://placehold.jp/1000x1000.png'}
+            src={'https://images.unsplash.com/photo-1599940824399-b87987ceb72a?w=1000&h=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGZvcmVzdHxlbnwwfHwwfHx8Mg%3D%3D'}
             width={1000}
             height={1000}
             style={{

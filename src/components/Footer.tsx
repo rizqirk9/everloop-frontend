@@ -1,26 +1,33 @@
 import { Box, Container, Divider, Stack, Typography } from '@mui/material';
 import { Instagram, X, YouTube } from '@mui/icons-material';
 import React from 'react';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
     <Container
+      maxWidth="xl"
       sx={{
-        marginY: 16
+        marginY: 2
       }}
     >
       <Stack direction="row" justifyContent="space-between" gap={2}>
-        <Typography variant="h4">LOGO</Typography>
+        <Image
+                src="/logo-everloop-long.svg"
+                alt="logo"
+                width={120}
+                height={40}
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto'
+                }}
+              />
         <Stack
           alignItems="center"
           justifyContent="space-between"
           direction="row"
           gap={5}
         >
-          <Typography variant="subtitle2">Link One</Typography>
-          <Typography variant="subtitle2">Link One</Typography>
-          <Typography variant="subtitle2">Link One</Typography>
-          <Typography variant="subtitle2">Link One</Typography>
         </Stack>
         <Stack
           alignItems="end"
@@ -33,7 +40,7 @@ export default function Footer() {
           <YouTube />
         </Stack>
       </Stack>
-      <Box marginY={5}>
+      <Box marginY={1}>
         <Divider />
       </Box>
       <Typography variant="caption" textAlign='center'>

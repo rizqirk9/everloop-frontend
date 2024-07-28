@@ -4,6 +4,8 @@ import { Button, Container, Stack, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { getForums } from '../handler';
 import ForumListItem from '@/components/ForumListItem';
+import { FORUMS } from '@/constants/routes';
+import Link from 'next/link';
 
 export default function Forum() {
   const [forums, setForums] = useState<any[]>([]);
@@ -35,9 +37,11 @@ export default function Forum() {
           <Typography variant="body2" textAlign="left">
             Bahasan Terpopuler Saat Ini
           </Typography>
-          <Button variant="text" size="small">
-            Lihat forum
-          </Button>
+          <Link href={FORUMS.LIST}>
+            <Button variant="text" size="small">
+              Lihat forum
+            </Button>
+            </Link>
         </Stack>
       </Stack>
       <Stack

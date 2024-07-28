@@ -31,17 +31,17 @@ export default function List() {
     total: 0
   });
 
-  const [type, setType] = useState<'donor' | 'volunteer'>('donor');
+  const [type, setType] = useState<'donor' | 'volunteer' | 'all'>('all');
 
   useEffect(() => {
     async function fetchData() {
-      const data = await getCampaigns(currentPage);
+      const data = await getCampaigns(currentPage, type);
       setCampaigns(data.data);
       setPagination(data.meta.pagination);
     }
 
     fetchData();
-  }, [currentPage]);
+  }, [currentPage, type]);
 
   return (
     <Container
@@ -63,20 +63,23 @@ export default function List() {
       <Stack mt={5} direction="row" gap={2}>
         {/* Filter */}
         <ListMaterial>
-          <ListItemButton selected={type === 'donor'}>
+          <ListItemButton selected={type === 'all'} onClick={() => setType('all')}>
+            <ListItemText primary="Semua" sx={{ fontSize: '0.875rem' }} />
+          </ListItemButton>
+          <ListItemButton selected={type === 'donor'} onClick={() => setType('donor')}>
             <ListItemText primary="Donasi" sx={{ fontSize: '0.875rem' }} />
           </ListItemButton>
-          <ListItemButton selected={type === 'volunteer'}>
+          <ListItemButton selected={type === 'volunteer'} onClick={() => setType('volunteer')}>
             <ListItemText primary="Relawan" sx={{ fontSize: '0.875rem' }} />
           </ListItemButton>
         </ListMaterial>
 
         {/* Campaign List */}
-        <Grid container spacing={2}>
+        <Grid container spacing={2} flexGrow={1}>
           {campaigns &&
             campaigns.map((campaign, index) => (
               <Grid item xs={12} sm={12} md={6} lg={4} key={index}>
-                <Box width="100%" flexGrow={1}>
+                <Box width="100%" display="flex" height="100%">
                   <CampaignListItem campaign={campaign.attributes} />
                 </Box>
               </Grid>

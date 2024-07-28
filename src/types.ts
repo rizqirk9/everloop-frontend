@@ -36,4 +36,6 @@ export type CampaignType = {
   uuid: string;
   createdAt: string;
   location: string;
+  type: string;
+  volunteer: number;
 };

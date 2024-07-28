@@ -1,16 +1,12 @@
-import { Box, Container } from '@mui/material';
+import { Container } from '@mui/material';
 import React from 'react';
 import Header from './_section/header';
 import Form from './_section/form';
 
-export default function Create() {
+export default function CreateForum() {
   if (typeof navigator !== 'undefined') {
     return (
-      <Container
-        sx={{
-          my: 10
-        }}
-      >
+      <Container>
         <Header />
         <Form />
       </Container>

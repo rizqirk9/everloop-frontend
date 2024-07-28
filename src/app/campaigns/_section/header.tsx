@@ -1,4 +1,6 @@
+import { CAMPAIGNS } from '@/constants/routes';
 import { Button, Container, Stack, Typography } from '@mui/material';
+import Link from 'next/link';
 import React from 'react';
 
 export default function Header() {
@@ -20,7 +22,9 @@ export default function Header() {
             Temukan Campaign yang ingin kamu ikuti dan berikan kontribusi
             terbaikmu!
           </Typography>
-          <Button variant="contained">Buat campaign</Button>
+          <Link href={CAMPAIGNS.CREATE}>
+            <Button variant="contained">Buat campaign</Button>
+          </Link>
         </Stack>
       </Stack>
     </Container>

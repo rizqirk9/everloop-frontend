@@ -1,8 +1,18 @@
-import { CAMPAIGNS } from '@/constants/routes'
+import { CAMPAIGNS } from '@/constants/routes';
 import { CampaignType } from '@/types';
-import { Box, Button, Grid, Paper, Typography } from '@mui/material';
+import { formatNumber } from '@/utils/formatNumber';
+import { makeTextBrief } from '@/utils/makeTextBrief';
+import {
+  Box,
+  Button,
+  Chip,
+  Grid,
+  Paper,
+  Stack,
+  Typography
+} from '@mui/material';
 import Image from 'next/image';
-import Link from 'next/link'
+import Link from 'next/link';
 import React from 'react';
 
 export default function CampaignListItem({
@@ -18,49 +28,47 @@ export default function CampaignListItem({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        flexGrow: 1
+        flexGrow: 1,
       }}
     >
       {campaign.banner?.data ? (
         <Image
           src={`${process.env.NEXT_PUBLIC_BASE_URL}${campaign.banner.data.attributes.url}`}
           alt="Campaign"
-          style={{ width: '100%', height: 'auto' }}
+          style={{ width: '100%', height: '200px' }}
           width={300}
           height={300}
+          objectFit="cover"
         />
       ) : (
-        <div
+        <Box
           style={{
             width: '100%',
-            height: '150px',
+            height: '200px',
             backgroundColor: '#f0f0f0'
           }}
-        ></div>
+        ></Box>
       )}
-      <Box>
-        <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mt: 1 }}>
-          {campaign.name}
-        </Typography>
-        <Typography
-          variant="body2"
-          sx={{
-            mb: 1,
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            display: '-webkit-box',
-            WebkitLineClamp: 3,
-            WebkitBoxOrient: 'vertical'
-          }}
-        >
-          <div dangerouslySetInnerHTML={{ __html: campaign.description }}></div>
+      <Box mt={4}>
+        <Chip label={campaign.type === 'donor' ? 'Donatur' : 'Relawan'} />
+      </Box>
+      <Stack gap={2} mt={2} mb={5}>
+        <Typography variant="h5">{campaign.name}</Typography>
+        <Typography variant="subtitle2">
+          <div
+            dangerouslySetInnerHTML={{
+              __html: makeTextBrief(campaign.description, 100)
+            }}
+          ></div>
         </Typography>
         <Typography variant="body1" sx={{ mb: 1 }}>
-          Rp {campaign.budget}
+          {campaign.type === 'donor'
+            ? `Rp ${formatNumber(campaign.budget)}`
+            : `${formatNumber(campaign.volunteer)} Orang`} 
         </Typography>
-      </Box>
+      </Stack>
       <Link href={`${CAMPAIGNS.LIST}/${campaign.uuid}`}>
-        <Button variant="contained" size="small" color="primary">
+        <Button variant="contained" size="medium" color="primary">
           Lihat Campaign
         </Button>
       </Link>

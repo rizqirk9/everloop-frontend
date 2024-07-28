@@ -15,3 +15,8 @@ export const FORUM = {
   find: 'forums',
   create: 'forums'
 };
+
+export const COMMENTS = {
+  find: 'comments',
+  create: 'comments'
+};

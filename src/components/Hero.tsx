@@ -9,6 +9,8 @@ import {
   styled
 } from '@mui/material';
 import React from 'react';
+import { CAMPAIGNS, FORUMS } from '@/constants/routes';
+import Link from 'next/link';
 
 const HeroSection = styled(Box)(({ theme }) => ({
   position: 'relative',
@@ -60,12 +62,16 @@ export default function Hero() {
             Terhubung, kolaborasi bersama untuk masa depan yang berkelanjutan
           </Typography>
           <Stack direction="row" gap={2}>
-            <Button variant="contained" color="primary">
-              Lihat Campaign
-            </Button>
-            <Button variant="contained" color="secondary">
-              Gabung Forum
-            </Button>
+            <Link href={CAMPAIGNS.LIST}>
+              <Button variant="contained" color="primary">
+                Lihat Campaign
+              </Button>
+            </Link>
+            <Link href={FORUMS.LIST}>
+              <Button variant="contained" color="secondary">
+                Gabung Forum
+              </Button>
+            </Link>
           </Stack>
         </Stack>
       </ContentContainer>

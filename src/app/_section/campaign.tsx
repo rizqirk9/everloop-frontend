@@ -5,6 +5,8 @@ import { Button, Container, Stack, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { getCampaigns } from '../handler';
 import CampaignListItem from '@/components/CampaignListItem';
+import { CAMPAIGNS } from '@/constants/routes';
+import Link from 'next/link';
 
 export default function Campaign() {
   const [campaigns, setCampaigns] = useState<
@@ -41,9 +43,11 @@ export default function Campaign() {
           <Typography variant="body2" textAlign="left">
             Campaign terbaru
           </Typography>
-          <Button variant="text" size="small">
-            Lihat semua campaign
-          </Button>
+            <Link href={CAMPAIGNS.LIST}>
+              <Button variant="text" size="small">
+                Lihat semua campaign
+              </Button>
+            </Link>
         </Stack>
       </Stack>
       <Stack

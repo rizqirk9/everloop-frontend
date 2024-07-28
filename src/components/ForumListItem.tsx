@@ -1,5 +1,6 @@
 import { FORUMS } from '@/constants/routes';
 import { ForumType } from '@/types';
+import { makeTextBrief } from '@/utils/makeTextBrief'
 import {
   Box,
   Button,
@@ -19,9 +20,13 @@ export default function ForumListItem({ forum }: { forum: ForumType }) {
           <Stack gap={3}>
             <Typography variant="body1">{forum.title}</Typography>
             <Typography variant="caption">{forum.createdAt}</Typography>
-            <Typography variant="subtitle2">{forum.content}</Typography>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: makeTextBrief(forum.content, 500)
+              }}
+            ></div>
           </Stack>
-          <Box>
+          <Box flex={1}>
             <Link href={`${FORUMS.LIST}/${forum.uuid}`}>
               <Button variant="contained" size="small" color="primary">
                 Lihat Forum
